@@ -93,6 +93,11 @@ input,textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid
 .pay .acc strong{display:block;font-size:1.4rem;letter-spacing:.04em;color:var(--moon);margin:4px 0 2px}
 .pay .acc p{color:var(--mute);font-size:.93rem;margin-bottom:10px}
 @media(max-width:560px){.pay .box{grid-template-columns:1fr}}
+.payimg{width:100%;border-radius:12px;display:block;margin:8px 0}
+.paybox{border:1px solid var(--line);border-radius:var(--r);padding:14px;margin:12px 0;background:var(--bg)}
+.paybox strong{color:var(--moon);font-size:1.2rem;letter-spacing:.04em}
+.steps{margin:10px 0 0 20px;color:var(--mute);font-size:.92rem}
+.steps li{margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -171,11 +176,31 @@ input,textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid
       <div class="row"><input id="bd" type="date" aria-label="Tanggal lahir"><input id="bt" type="time" aria-label="Jam lahir"></div>
       <label for="bp" style="margin-top:10px">Kota kelahiran</label><input id="bp">
     </div>
+    <div id="payStep" hidden>
+      <h2 style="font-size:1.3rem;margin:8px 0">Bayar DP dulu ya</h2>
+      <div class="paybox">
+        <div style="color:var(--mute);font-size:.9rem">DP 50% yang harus dibayar</div>
+        <strong id="payDp"></strong>
+        <img class="payimg" src="qris.svg" alt="QRIS a.n. Auralia Madinna Rahardi">
+        <div style="color:var(--mute);font-size:.9rem">Atau transfer BCA a.n. Auralia Madinna Rahardi</div>
+        <strong id="payAcc">7738067662</strong><br>
+        <button class="add" id="copyAcc2" style="margin-top:8px">Salin nomor rekening</button>
+      </div>
+      <ol class="steps">
+        <li>Bayar DP lewat QRIS atau transfer BCA.</li>
+        <li>Screenshot bukti pembayarannya.</li>
+        <li>Centang kotak di bawah, lalu klik tombol WhatsApp.</li>
+        <li>WhatsApp terbuka dengan detail pesananmu. Lampirkan screenshot bukti bayar (ikon klip) sebelum menekan kirim.</li>
+      </ol>
+      <label class="check"><input type="checkbox" id="paid"> Aku sudah bayar DP dan sudah punya bukti pembayarannya</label>
+    </div>
   </div>
   <div class="df">
     <div id="err" role="alert"></div>
-    <button class="cta" id="wa">Kirim pesanan via WhatsApp</button>
+    <button class="cta" id="next">Lanjut ke pembayaran</button>
+    <button class="cta" id="wa" hidden>Kirim pesanan dan bukti bayar ke WhatsApp</button>
     <button class="ghost" id="copy">Salin pesanan (untuk DM Instagram)</button>
+    <button class="ghost" id="back" hidden>Kembali ke pesanan</button>
   </div>
 </aside>
 
@@ -207,9 +232,11 @@ const CATS = [
 ];
 const ALL = Object.fromEntries(CATS.flatMap(c=>c.items).map(i=>[i.id,i]));
 const rp = n => "Rp" + Math.round(n).toLocaleString("id-ID");
-let cart = [];            // {id, qty, topics}
-const pick = {};          // pilihan topik sementara per item
-const qty = {};           // jumlah sementara untuk item mode qty
+let cart = [];
+let step = 1;
+const orderId = "CCC-" + Math.random().toString(36).slice(2,6).toUpperCase();
+const pick = {};
+const qty = {};
 
 const lineTotal = l => { const i=ALL[l.id]; return i.mode==="topic" ? i.price*l.topics.length : i.mode==="qty" ? i.price*l.qty : i.price; };
 const lineLabel = l => { const i=ALL[l.id]; return i.mode==="topic" ? `${i.name} (${l.topics.join(", ")})` : i.mode==="qty" ? `${i.name} (${l.qty} ${i.unit})` : i.name; };
@@ -289,21 +316,24 @@ function renderCart(){
     const right = document.createElement("div"); right.className="price"; right.textContent = rp(lineTotal(l));
     d.append(left,right); box.append(d);
   });
-  document.getElementById("checkout").hidden = !cart.length;
+  document.getElementById("checkout").hidden = !cart.length || step===2;
+  if(!cart.length && step===2) step = 1;
   const t = totals();
   sSub.textContent=rp(t.sub); sDisc.textContent="−"+rp(t.disc); dRow.hidden=!t.disc;
-  sTot.textContent=rp(t.tot); sDp.textContent=rp(t.dp); sRest.textContent=rp(t.rest);
+  sTot.textContent=rp(t.tot); sDp.textContent=rp(t.dp); sRest.textContent=rp(t.rest); payDp.textContent=rp(t.dp);
+  payStep.hidden = step!==2; next.hidden = step===2; wa.hidden = step!==2; back.hidden = step!==2; copy.hidden = step===2;
 }
 
 function buildMessage(){
   const t = totals(), v = id=>document.getElementById(id).value.trim();
-  const L = ["*Pesanan Tarot by Cosmic Chaos Club*","",`Nama: ${v("name")}`,`Kontak: ${v("contact")}`,"","*Pesanan:*"];
+  const L = [`Halo kak, aku mau pesan reading di Cosmic Chaos Club (No. pesanan ${orderId})`,'',`Nama: ${v("name")}`,`Kontak: ${v("contact")}`,'','*Pesanan:*'];
   cart.forEach(l=>L.push(`- ${lineLabel(l)}: ${rp(lineTotal(l))}`));
-  L.push("",`Subtotal: ${rp(t.sub)}`);
+  L.push('',`Subtotal: ${rp(t.sub)}`);
   if(t.disc) L.push(`Diskon pelanggan pertama 40%: -${rp(t.disc)} (screenshot story menyusul)`);
   L.push(`Total: ${rp(t.tot)}`,`DP 50%: ${rp(t.dp)}`,`Pelunasan setelah reading: ${rp(t.rest)}`);
-  if(v("q")) L.push("","*Pertanyaan / konteks:*",v("q"));
-  if(v("bd")||v("bt")||v("bp")) L.push("","*Data lahir:*",`Tanggal: ${v("bd")||"-"}`,`Jam: ${v("bt")||"-"}`,`Kota: ${v("bp")||"-"}`);
+  if(v("q")) L.push('','*Pertanyaan / konteks:*',v("q"));
+  if(v("bd")||v("bt")||v("bp")) L.push('','*Data lahir:*',`Tanggal: ${v("bd")||"-"}`,`Jam: ${v("bt")||"-"}`,`Kota: ${v("bp")||"-"}`);
+  L.push('','DP 50% sudah aku bayar, bukti pembayarannya aku lampirkan di chat ini ya kak.');
   return L.join("\n");
 }
 
@@ -315,7 +345,14 @@ function valid(){
   err.textContent=""; return true;
 }
 
-wa.onclick = ()=>{ if(valid()) window.open(`https://wa.me/${CONFIG.wa}?text=${encodeURIComponent(buildMessage())}`,"_blank"); };
+next.onclick = ()=>{ if(valid()){ step=2; renderCart(); document.querySelector(".db").scrollTop=0; } };
+back.onclick = ()=>{ step=1; err.textContent=""; renderCart(); };
+copyAcc2.onclick = async ()=>{ try{ await navigator.clipboard.writeText(CONFIG.bca); copyAcc2.textContent="Tersalin"; }catch{ copyAcc2.textContent="Salin manual: "+CONFIG.bca; } };
+wa.onclick = ()=>{
+  if(!valid()) return;
+  if(!paid.checked){ err.textContent="Bayar DP dulu, lalu centang kotak konfirmasi."; return; }
+  window.location.href = `https://wa.me/${CONFIG.wa}?text=${encodeURIComponent(buildMessage())}`;
+};
 copyAcc.onclick = async ()=>{ try{ await navigator.clipboard.writeText(CONFIG.bca); copyAcc.textContent="Tersalin"; }catch{ copyAcc.textContent="Salin manual: "+CONFIG.bca; } };
 copy.onclick = async ()=>{
   if(!valid()) return;
