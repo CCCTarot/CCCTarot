@@ -13,7 +13,8 @@ body{background:var(--bg);color:var(--ink);font:16px/1.6 "DM Sans",system-ui,san
 h1,h2{font-family:Gloock,Georgia,serif;font-weight:400;line-height:1.1}
 .wrap{max-width:760px;margin:0 auto;padding:0 20px}
 :focus-visible{outline:3px solid var(--moon);outline-offset:2px}
-button{font:inherit;cursor:pointer}
+button,a{font:inherit}
+button{cursor:pointer}
 
 header.top{position:sticky;top:0;z-index:5;background:rgba(28,16,48,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
@@ -23,6 +24,11 @@ header.top .wrap{display:flex;justify-content:space-between;align-items:center;h
 .hero{padding:56px 0 36px;position:relative}
 .hero h1{font-size:clamp(2.6rem,9vw,4.6rem);max-width:11ch}
 .hero p{color:var(--mute);max-width:44ch;margin:18px 0 24px}
+.hero-cta-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.cta,.wa-cta{display:inline-block;border:0;border-radius:99px;padding:12px 24px;font-weight:700;text-decoration:none;transition:.2s ease}
+.cta{background:var(--moon);color:#2b2205}
+.wa-cta{background:#27d366;color:#0f2b17}
+.wa-cta:hover,.cta:hover{transform:translateY(-1px)}
 .fan{position:absolute;right:8px;top:40px;width:130px;height:190px}
 .fan i{position:absolute;inset:0;border:2px solid var(--moon);border-radius:12px;background:var(--panel)}
 .fan i:nth-child(1){transform:rotate(-14deg)}
@@ -30,7 +36,6 @@ header.top .wrap{display:flex;justify-content:space-between;align-items:center;h
 .fan i:nth-child(3){transform:rotate(14deg);background:var(--pink);border-color:var(--pink)}
 .fan i:nth-child(2)::after{content:"☾";position:absolute;inset:0;display:grid;place-items:center;font-size:3rem;color:var(--moon)}
 @media(max-width:560px){.fan{display:none}}
-.cta{display:inline-block;background:var(--moon);color:#2b2205;border:0;border-radius:99px;padding:12px 24px;font-weight:700;text-decoration:none}
 
 .promo{border:1.5px dashed var(--moon);border-radius:var(--r);padding:16px 20px;margin:8px 0 8px}
 .promo b{color:var(--moon)}
@@ -112,7 +117,10 @@ input,textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid
     <div class="fan" aria-hidden="true"><i></i><i></i><i></i></div>
     <h1>Tarot by Cosmic Chaos Club</h1>
     <p>Reading tarot dan birth chart mulai dari Rp3.000. Pilih layananmu, kirim pertanyaan, dan kami baca untukmu.</p>
-    <a class="cta" href="#katalog">Lihat price list</a>
+    <div class="hero-cta-row">
+      <a class="cta" href="#katalog">Lihat price list</a>
+      <a class="wa-cta" href="https://wa.me/6281229975955?text=Halo%20Cosmic%20Chaos%20Club%2C%20saya%20mau%20bertanya%20tentang%20reading" target="_blank" rel="noopener">Chat WhatsApp</a>
+    </div>
   </div>
 
   <div class="promo">
@@ -148,6 +156,7 @@ input,textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid
         <p>a.n. Auralia Madinna Rahardi</p>
         <button class="add" id="copyAcc">Salin nomor rekening</button>
         <p style="margin-top:12px">Bayar DP 50% setelah pesanan dikonfirmasi, lalu kirim bukti transfer lewat WhatsApp.</p>
+        <a class="wa-cta" href="https://wa.me/6281229975955?text=Halo%20Cosmic%20Chaos%20Club%2C%20saya%20sudah%20bayar%20DP%20dan%20ingin%20konfirmasi" target="_blank" rel="noopener" style="margin-top:12px;display:inline-block">Chat saya di WhatsApp</a>
       </div>
     </div>
   </div>
