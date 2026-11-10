@@ -7,161 +7,53 @@
   <title>Cosmic Chaos Club | Tarot & Reading</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gloock&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Gloock&display=swap" rel="stylesheet">
   <style>
-    :root{--aqua:#1bcedb;--ink:#211b30;--muted:#655d7d;--pink:#ef69c4;--line:#dedbe5;--r:20px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--aqua);color:var(--ink);font:16px/1.6 "DM Sans",sans-serif}button,a,input,textarea{font:inherit}button{cursor:pointer}a{color:inherit}h1,h2{font-family:Gloock,Georgia,serif;font-weight:400;line-height:1.1;margin:0}p{margin:0}.wrap{max-width:1060px;margin:auto;padding:0 18px}:focus-visible{outline:3px solid #34234f;outline-offset:3px}
-    header{position:sticky;top:0;z-index:5;background:rgba(27,206,219,.96);backdrop-filter:blur(8px);border-bottom:1px solid #ffffff55}header .wrap{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font:clamp(1.3rem,3vw,2.1rem) Gloock,Georgia,serif;color:#fff}.cart-btn,.btn{border:0;border-radius:999px;padding:12px 20px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.cart-btn{background:white;color:var(--ink)}
-    .hero{color:white;padding:48px 0 34px}.hero h1{font-size:clamp(2.5rem,7vw,5.4rem);max-width:15ch;letter-spacing:-.04em}.hero p{max-width:55ch;margin:16px 0 22px;color:#ffffffdf}.actions{display:flex;flex-wrap:wrap;gap:10px}.btn-light{background:#fff;color:var(--ink)}.btn-pink{background:var(--pink);color:#fff}.promo,.product,.payment-box{background:#fff;border-radius:var(--r);box-shadow:0 12px 30px #17204418}.promo{padding:18px 22px;margin:0 auto 30px}.promo ul{margin:8px 0 0 20px;color:var(--muted)}
-    section.catalog,section.payment{padding:20px 0 38px}.catalog h2,.payment h2,.how h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:8px}.lead{color:var(--muted);margin-bottom:18px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.product{padding:18px;display:flex;flex-direction:column;min-height:220px}.product h3{font-size:1.2rem;margin:0}.prod-head{display:flex;justify-content:space-between;gap:10px}.price{white-space:nowrap;color:#946700;font-weight:700}.product p{color:var(--muted);font-size:.94rem;margin:10px 0 16px}.add-btn{margin-top:auto;border:1px solid #cf56a7;background:#fdf4fa;color:#411237;border-radius:999px;padding:10px 14px;font-weight:700}.add-btn:hover{background:var(--pink);color:white}.how{color:white;padding:12px 0 38px}.how ol{padding-left:22px;color:#ffffffdf}.how li{margin:8px 0}.payment-box{padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}.payment-box img{width:min(100%,420px);margin:auto;border-radius:14px}.pay-copy{display:grid;gap:12px}.pay-copy h3{font:700 1.8rem "DM Sans",sans-serif}.bank{background:#f7f6fa;border:1px solid var(--line);border-radius:14px;padding:16px}.bank strong{display:block;font-size:1.6rem;letter-spacing:.04em}.muted{color:var(--muted);font-size:.92rem}.footer{color:white;text-align:center;padding:24px;border-top:1px solid #ffffff55}.footer a{color:white}
-    #veil{position:fixed;inset:0;background:#0009;opacity:0;pointer-events:none;z-index:9;transition:opacity .2s}#drawer{position:fixed;z-index:10;inset:0 0 0 auto;width:min(440px,100%);height:100dvh;background:#fff;box-shadow:-12px 0 40px #0003;transform:translateX(105%);transition:transform .25s;display:flex;flex-direction:column}body.cart-open #veil{opacity:1;pointer-events:auto}body.cart-open #drawer{transform:translateX(0)}.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}.drawer-head h2{font-size:1.5rem}.close-btn{border:0;background:none;font-size:1.8rem;color:var(--ink)}.drawer-body{flex:1;overflow:auto;padding:16px 20px}.empty{color:var(--muted);padding:16px 0}.cart-line{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.cart-line small{display:block;color:var(--muted)}.controls{display:flex;align-items:center;gap:6px}.controls button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:3px 8px}.controls .remove{color:#ae286e}.total{display:flex;justify-content:space-between;padding:16px 0;font-weight:700;font-size:1.15rem}.drawer-body label{display:block;margin:10px 0 4px;font-size:.9rem}.drawer-body input,.drawer-body textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--ink);background:#fff}.drawer-foot{padding:14px 20px;border-top:1px solid var(--line);display:grid;gap:8px}.checkout{border:0;border-radius:999px;padding:13px;background:#25d366;color:#10351d;font-weight:700}.checkout:disabled{opacity:.5;cursor:not-allowed}.error{color:#ad245f;min-height:1.3em;font-size:.9rem}#toast{position:fixed;z-index:30;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#211b30;color:white;padding:10px 18px;border-radius:999px;transition:.2s}#toast.show{opacity:1;transform:translate(-50%,0)}
-    @media(max-width:700px){.payment-box{grid-template-columns:1fr}.hero{padding-top:30px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+    :root{--sea:#83aaa4;--sea-deep:#668f89;--cream:#f4efe5;--paper:#fffdf8;--ink:#30283b;--muted:#776e7f;--plum:#654d70;--plum-dark:#473752;--rose:#c9829d;--rose-light:#f5e8ec;--gold:#c9a968;--line:#e6ded2;--shadow:0 12px 32px rgba(48,40,59,.09);--radius:20px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--sea);color:var(--ink);font:16px/1.6 "DM Sans",sans-serif}button,a,input,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{display:block;max-width:100%}h1,h2{font-family:"Gloock",Georgia,serif;font-weight:400;line-height:1.08;margin:0}p{margin:0}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.wrap{width:min(1060px,100% - 36px);margin-inline:auto}
+    header{position:sticky;top:0;z-index:5;background:rgba(131,170,164,.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.28)}header .wrap{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:10px;font:clamp(1.25rem,2.7vw,2rem) "Gloock",Georgia,serif;color:#fff}.brand-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.2);color:#fff;font-size:1.45rem}.cart-btn,.btn{border:0;border-radius:999px;padding:12px 20px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:transform .18s,background .18s}.cart-btn{background:var(--paper);color:var(--plum-dark);box-shadow:0 5px 16px #47375215}.cart-btn:hover,.btn:hover{transform:translateY(-2px)}
+    .hero{color:#fff;padding:48px 0 34px}.hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}.eyebrow{display:inline-block;margin-bottom:16px;padding:7px 13px;border:1px solid #ffffff55;border-radius:999px;background:#ffffff19;color:#fff;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase}.hero h1{max-width:15ch;font-size:clamp(2.6rem,6.6vw,5.2rem);letter-spacing:-.035em}.hero-copy{max-width:55ch;margin:16px 0 22px;color:#ffffffed}.actions{display:flex;flex-wrap:wrap;gap:10px}.btn-light{background:var(--cream);color:var(--plum-dark)}.btn-rose{background:var(--rose);color:#fff}.hero-art{min-height:230px;border:1px solid #ffffff46;border-radius:var(--radius);background:#ffffff1a;display:grid;place-items:center;overflow:hidden}.card-moon{width:160px;height:180px;border:2px solid #e6d3a7;border-radius:24px;background:#ffffff0b;display:grid;place-items:center;position:relative;transform:rotate(-8deg);box-shadow:14px 12px 0 -4px #c9829d66,-14px -10px 0 -6px #f4efe533}.card-moon:before{content:"✦";position:absolute;top:14px;left:16px;color:#e6d3a7;font-size:1rem}.card-moon span{font-size:4rem;color:#eadbb8}
+    .promo{padding:18px 22px;margin:0 auto 28px;border:1px dashed #c9a968;border-radius:var(--radius);background:var(--cream);box-shadow:var(--shadow)}.promo strong{color:var(--plum-dark)}.promo ul{margin:8px 0 0 20px;padding:0;color:var(--muted)}
+    .catalog,.payment{padding:20px 0 38px}.catalog h2,.payment h2,.how h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:8px;color:var(--ink)}.lead{margin-bottom:18px;color:var(--muted)}.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.product{display:flex;flex-direction:column;min-height:220px;padding:19px;border:1px solid #fff;border-radius:var(--radius);background:var(--paper);box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}.product:hover{transform:translateY(-3px);box-shadow:0 16px 35px #30283b18}.prod-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.product h3{font-size:1.12rem;font-weight:700;line-height:1.3}.price{white-space:nowrap;color:#96733d;font-weight:700}.product p{margin:10px 0 16px;color:var(--muted);font-size:.94rem}.add-btn{width:100%;margin-top:auto;padding:10px 14px;border:1px solid #c9829d88;border-radius:999px;background:var(--rose-light);color:var(--plum-dark);font-weight:700;transition:background .18s,color .18s}.add-btn:hover{background:var(--rose);color:#fff}
+    .how{padding:14px 0 38px;color:#fff}.how h2{color:#fff}.how ol{margin:14px 0 0;padding-left:22px;color:#ffffffed}.how li{margin:7px 0}.payment-box{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center;padding:22px;border-radius:var(--radius);background:var(--cream);box-shadow:var(--shadow)}.qr-wrap img{width:min(100%,420px);margin:auto;border-radius:14px;box-shadow:0 12px 26px #30283b19}.muted{color:var(--muted);font-size:.92rem}.qr-caption{text-align:center;margin-top:8px}.pay-copy{display:grid;gap:12px}.pay-copy h3{font-size:1.7rem}.bank{padding:16px;border:1px solid var(--line);border-radius:15px;background:var(--paper)}.bank strong{display:block;margin-top:4px;font-size:1.55rem;letter-spacing:.04em}.footer{padding:24px 18px 34px;border-top:1px solid #ffffff55;color:#fff;text-align:center}.footer a{color:#fff;text-underline-offset:3px}
+    #veil{position:fixed;inset:0;z-index:9;background:#211b30a8;opacity:0;pointer-events:none;transition:opacity .22s}#drawer{position:fixed;inset:0 0 0 auto;z-index:10;width:min(440px,100%);height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--paper);box-shadow:-12px 0 40px #211b3030;transform:translateX(105%);transition:transform .25s}body.cart-open #veil{opacity:1;pointer-events:auto}body.cart-open #drawer{transform:translateX(0)}.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)}.drawer-head h2{font-size:1.5rem}.close-btn{border:0;background:transparent;color:var(--ink);font-size:1.8rem}.drawer-body{flex:1;overflow:auto;padding:16px 20px}.empty{padding:16px 0;color:var(--muted)}.cart-line{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.cart-line small{display:block;color:var(--muted)}.controls{display:flex;align-items:center;gap:6px}.controls button{min-width:32px;min-height:32px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}.controls .remove{padding:4px 8px;color:#9c4c6a}.total{display:flex;justify-content:space-between;padding:16px 0;font-weight:700;font-size:1.15rem}.drawer-body label{display:block;margin:10px 0 4px;font-size:.9rem}.drawer-body input,.drawer-body textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}.drawer-foot{display:grid;gap:8px;padding:14px 20px;border-top:1px solid var(--line);padding-bottom:max(14px,env(safe-area-inset-bottom))}.checkout{border:0;border-radius:999px;padding:13px 18px;background:var(--plum);color:white;font-weight:700}.checkout:disabled{opacity:.5;cursor:not-allowed}.error{min-height:1.3em;color:#9c4c6a;font-size:.9rem}#toast{position:fixed;z-index:30;bottom:max(20px,env(safe-area-inset-bottom));left:50%;max-width:calc(100% - 32px);padding:10px 17px;border-radius:999px;background:var(--plum-dark);color:#fff;text-align:center;opacity:0;transform:translate(-50%,14px);pointer-events:none;transition:opacity .2s,transform .2s}#toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:700px){.hero{padding:30px 0 25px}.hero-inner,.payment-box{grid-template-columns:1fr}.hero-inner{gap:20px}.hero-art{min-height:165px}.card-moon{width:122px;height:138px}.card-moon span{font-size:3.3rem}.catalog,.payment{padding-top:16px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product{min-height:210px;padding:15px}.prod-head{display:block}.price{display:block;margin-top:5px}.payment-box{padding:17px}.qr-wrap img{width:min(100%,390px)}}
+    @media(max-width:430px){.wrap{width:calc(100% - 28px)}header .wrap{min-height:64px}.brand{font-size:1.15rem;gap:7px}.brand-mark{width:34px;height:34px;font-size:1.2rem}.cart-btn{padding:10px 12px;font-size:.88rem}.hero h1{font-size:clamp(2.35rem,12vw,3.2rem)}.hero-copy{font-size:.96rem}.eyebrow{font-size:.68rem}.actions .btn{flex:1;padding:12px 14px;font-size:.9rem}.promo{padding:15px 16px;margin-bottom:22px}.catalog h2,.payment h2,.how h2{font-size:2rem}.product-grid{grid-template-columns:1fr}.product{min-height:0;padding:17px}.prod-head{display:flex}.price{display:inline;margin:0}.product p{margin:8px 0 13px}.add-btn{padding:12px;min-height:46px}.payment-box{padding:13px;gap:18px}.drawer-body{padding:14px 16px}.drawer-head,.drawer-foot{padding-left:16px;padding-right:16px}.controls{gap:4px}.controls button{min-width:34px;min-height:36px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
-  <header><div class="wrap"><div class="brand">✦ Cosmic Chaos Club</div><button id="cartBtn" class="cart-btn" type="button">Keranjang (<span id="cartCount">0</span>)</button></div></header>
+  <header><div class="wrap"><div class="brand"><span class="brand-mark" aria-hidden="true">✦</span>Cosmic Chaos Club</div><button id="cartBtn" class="cart-btn" type="button" aria-label="Buka keranjang">Keranjang (<span id="cartCount">0</span>)</button></div></header>
   <main>
-    <section class="hero"><div class="wrap"><p style="letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Tarot • Astrology • Intuitive Reading</p><h1>Reading yang membawamu kembali ke arah diri sendiri.</h1><p>Mulai dari tarot, love reading, birth chart, hingga guidance personal. Pilih reading yang paling membantumu hari ini.</p><div class="actions"><a class="btn btn-light" href="#catalog">Lihat Price List</a><a class="btn btn-pink" href="https://wa.me/6281229975955?text=Halo%20Cosmic%20Chaos%20Club%2C%20saya%20mau%20tanya%20tentang%20reading" target="_blank" rel="noopener">Chat WhatsApp</a></div></div></section>
+    <section class="hero"><div class="wrap hero-inner"><div><div class="eyebrow">Tarot · Astrology · Intuitive Reading</div><h1>Reading yang membawamu kembali ke arah diri sendiri.</h1><p class="hero-copy">Mulai dari tarot, love reading, birth chart, hingga guidance personal. Pilih reading yang paling membantumu hari ini.</p><div class="actions"><a class="btn btn-light" href="#catalog">Lihat Price List</a><a class="btn btn-rose" href="https://wa.me/6281229975955?text=Halo%20Cosmic%20Chaos%20Club%2C%20saya%20mau%20tanya%20tentang%20reading" target="_blank" rel="noopener">Chat WhatsApp</a></div></div><div class="hero-art" aria-hidden="true"><div class="card-moon"><span>☾</span></div></div></div></section>
     <div class="promo wrap"><strong>Promo khusus pelanggan pertama: Diskon 40%.</strong><ul><li>Tag Instagram @ccc.tarot</li><li>Posting story hasil reading</li><li>Kirim screenshot story untuk claim promo</li></ul></div>
-    <section id="catalog" class="catalog wrap"><h2>Price List</h2><p class="lead">Pilih layanan yang paling sesuai dengan kebutuhanmu.</p><div id="productGrid" class="grid">
+    <section id="catalog" class="catalog wrap"><h2>Price List</h2><p class="lead">Pilih layanan yang paling sesuai dengan kebutuhanmu.</p><div id="productGrid" class="product-grid">
       <article class="product" data-id="one-card" data-name="1 Card Reading" data-price="5000"><div class="prod-head"><h3>1 Card Reading</h3><span class="price">Rp 5.000</span></div><p>1 pertanyaan, 1 kartu, jawaban singkat dan fokus.</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
-      <article class="product" data-id="yes-no" data-name="Yes / No Question" data-price="3000"><div class="prod-head"><h3>Yes / No Question</h3><span class="price">Rp 3.000</span></div><p>Jawaban singkat, jelas, untuk pertanyaan ya/tidak.</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
+      <article class="product" data-id="yes-no" data-name="Yes / No Question" data-price="3000"><div class="prod-head"><h3>Yes / No Question</h3><span class="price">Rp 3.000</span></div><p>Jawaban singkat dan jelas untuk pertanyaan ya/tidak.</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
       <article class="product" data-id="future-spouse" data-name="Future Spouse — General" data-price="17000"><div class="prod-head"><h3>Future Spouse</h3><span class="price">Rp 17.000</span></div><p>3 kartu: overview, dinamika, dan gambaran pasangan masa depan.</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
       <article class="product" data-id="next-lover" data-name="Next Lover" data-price="25000"><div class="prod-head"><h3>Next Lover</h3><span class="price">Rp 25.000</span></div><p>Personality, timing, koneksi, potensi, dan guidance.</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
       <article class="product" data-id="western-chart" data-name="Western Birth Chart — All Topics" data-price="75000"><div class="prod-head"><h3>Western Birth Chart</h3><span class="price">Rp 75.000</span></div><p>Birth chart lengkap untuk insight dan memahami diri.</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
       <article class="product" data-id="vedic-chart" data-name="Vedic Birth Chart — All Topics" data-price="75000"><div class="prod-head"><h3>Vedic Birth Chart</h3><span class="price">Rp 75.000</span></div><p>Insight astrologi untuk pola hidup, perjalanan, dan prediksi.</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
-      <article class="product" data-id="chart-bundle" data-name="Western + Vedic Bundle" data-price="135000"><div class="prod-head"><h3>Western + Vedic Bundle</h3><span class="price">Rp 135.000</span></div><p>Paket lengkap dua birth chart.</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
-      <article class="product" data-id="general-questions" data-name="General Questions (15 min)" data-price="30000"><div class="prod-head"><h3>General Questions</h3><span class="price">Rp 30.000</span></div><p>Chat, voice note, atau telepon (15 menit).</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
+      <article class="product" data-id="chart-bundle" data-name="Western + Vedic Bundle" data-price="135000"><div class="prod-head"><h3>Western + Vedic Bundle</h3><span class="price">Rp 135.000</span></div><p>Paket lengkap dua birth chart untuk gambaran lebih menyeluruh.</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
+      <article class="product" data-id="general-questions" data-name="General Questions (15 min)" data-price="30000"><div class="prod-head"><h3>General Questions</h3><span class="price">Rp 30.000</span></div><p>Chat, voice note, atau telepon untuk sesi 15 menit.</p><button class="add-btn" type="button" data-action="add">Tambah ke keranjang</button></article>
     </div></section>
     <section class="how wrap"><h2>Cara Order</h2><ol><li>Pilih reading lalu tekan Tambah ke keranjang.</li><li>Isi nama dan pertanyaan di keranjang.</li><li>Kirim pesanan lewat WhatsApp; DP 50% dibayar setelah konfirmasi.</li><li>Kirim bukti transfer lewat WhatsApp.</li><li>Reading dimulai setelah DP diterima.</li></ol></section>
-    <section id="payment" class="payment wrap"><h2>Pembayaran</h2><div class="payment-box"><div><img src="qris.png" alt="QRIS Cosmic Chaos Club a.n. Auralia Madinna Rahardi"><p class="muted" style="text-align:center;margin-top:8px">Scan QRIS dari aplikasi bank atau e-wallet.</p></div><div class="pay-copy"><h3>QRIS & Transfer</h3><div class="bank"><span class="muted">BCA · a.n. Auralia Madinna Rahardi</span><strong>7738067662</strong></div><p class="muted">DP 50% dibayar setelah pesanan dikonfirmasi. Kirim bukti pembayaran lewat WhatsApp.</p><a class="btn btn-pink" href="https://wa.me/6281229975955?text=Halo%20Cosmic%20Chaos%20Club%2C%20saya%20ingin%20konfirmasi%20pembayaran" target="_blank" rel="noopener">Konfirmasi Pembayaran</a></div></div></section>
+    <section id="payment" class="payment wrap"><h2>Pembayaran</h2><div class="payment-box"><div class="qr-wrap"><img src="qris.png" alt="QRIS Cosmic Chaos Club a.n. Auralia Madinna Rahardi"><p class="muted qr-caption">Scan QRIS dari aplikasi bank atau e-wallet.</p></div><div class="pay-copy"><h3>QRIS & Transfer</h3><div class="bank"><span class="muted">BCA · a.n. Auralia Madinna Rahardi</span><strong>7738067662</strong></div><p class="muted">DP 50% dibayar setelah pesanan dikonfirmasi. Kirim bukti pembayaran lewat WhatsApp.</p><a class="btn btn-rose" href="https://wa.me/6281229975955?text=Halo%20Cosmic%20Chaos%20Club%2C%20saya%20ingin%20konfirmasi%20pembayaran" target="_blank" rel="noopener">Konfirmasi Pembayaran</a></div></div></section>
   </main>
   <footer class="footer">Instagram: <a href="https://instagram.com/ccc.tarot" target="_blank" rel="noopener">@ccc.tarot</a></footer>
   <div id="veil" aria-hidden="true"></div>
   <aside id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true"><div class="drawer-head"><h2 id="drawerTitle">Keranjangmu</h2><button id="closeCart" class="close-btn" type="button" aria-label="Tutup keranjang">×</button></div><div class="drawer-body"><div id="cartLines"></div><div class="total"><span>Total</span><span id="cartTotal">Rp0</span></div><label for="customerName">Nama</label><input id="customerName" autocomplete="name" placeholder="Nama kamu"><label for="customerQuestion">Pertanyaan / konteks (opsional)</label><textarea id="customerQuestion" rows="4" placeholder="Tulis pertanyaan atau konteksmu"></textarea></div><div class="drawer-foot"><div id="cartError" class="error" role="alert"></div><button id="checkoutBtn" class="checkout" type="button" disabled>Kirim pesanan ke WhatsApp</button></div></aside>
   <div id="toast" role="status" aria-live="polite"></div>
   <script>
-    (() => {
-      "use strict";
-      const whatsappNumber = "6281229975955";
-      const cart = new Map();
-      const byId = (id) => document.getElementById(id);
-      const money = (value) => "Rp" + Number(value).toLocaleString("id-ID");
-      let toastTimer;
-
-      function openCart() {
-        document.body.classList.add("cart-open");
-        byId("drawer").setAttribute("aria-hidden", "false");
-        byId("veil").setAttribute("aria-hidden", "false");
-        byId("closeCart").focus();
-      }
-      function closeCart() {
-        document.body.classList.remove("cart-open");
-        byId("drawer").setAttribute("aria-hidden", "true");
-        byId("veil").setAttribute("aria-hidden", "true");
-        byId("cartBtn").focus();
-      }
-      function showToast(message) {
-        const toast = byId("toast");
-        toast.textContent = message;
-        toast.classList.add("show");
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
-      }
-      function renderCart() {
-        const lines = byId("cartLines");
-        lines.replaceChildren();
-        let total = 0;
-        let count = 0;
-        if (cart.size === 0) {
-          const empty = document.createElement("p");
-          empty.className = "empty";
-          empty.textContent = "Keranjangmu masih kosong. Pilih reading untuk mulai order.";
-          lines.append(empty);
-        }
-        for (const [id, item] of cart) {
-          total += item.price * item.quantity;
-          count += item.quantity;
-          const row = document.createElement("div");
-          row.className = "cart-line";
-          const detail = document.createElement("div");
-          const name = document.createElement("strong");
-          name.textContent = item.name;
-          const price = document.createElement("small");
-          price.textContent = `${money(item.price)} per item`;
-          detail.append(name, price);
-          const controls = document.createElement("div");
-          controls.className = "controls";
-          const minus = document.createElement("button");
-          minus.type = "button"; minus.textContent = "−"; minus.setAttribute("aria-label", `Kurangi ${item.name}`);
-          minus.addEventListener("click", () => changeQuantity(id, -1));
-          const quantity = document.createElement("span"); quantity.textContent = String(item.quantity);
-          const plus = document.createElement("button");
-          plus.type = "button"; plus.textContent = "+"; plus.setAttribute("aria-label", `Tambah ${item.name}`);
-          plus.addEventListener("click", () => changeQuantity(id, 1));
-          const remove = document.createElement("button");
-          remove.type = "button"; remove.className = "remove"; remove.textContent = "Hapus";
-          remove.addEventListener("click", () => { cart.delete(id); renderCart(); });
-          controls.append(minus, quantity, plus, remove);
-          row.append(detail, controls);
-          lines.append(row);
-        }
-        byId("cartCount").textContent = String(count);
-        byId("cartTotal").textContent = money(total);
-        byId("checkoutBtn").disabled = cart.size === 0;
-      }
-      function changeQuantity(id, delta) {
-        const item = cart.get(id);
-        if (!item) return;
-        item.quantity += delta;
-        if (item.quantity <= 0) cart.delete(id);
-        renderCart();
-      }
-
-      // Delegated click handling keeps product buttons working even if cards are changed later.
-      byId("productGrid").addEventListener("click", (event) => {
-        const button = event.target.closest('button[data-action="add"]');
-        if (!button || !byId("productGrid").contains(button)) return;
-        event.preventDefault();
-        const card = button.closest(".product");
-        if (!card) return;
-        const id = card.dataset.id;
-        const item = cart.get(id);
-        if (item) item.quantity += 1;
-        else cart.set(id, {id, name: card.dataset.name, price: Number(card.dataset.price), quantity: 1});
-        renderCart();
-        openCart();
-        showToast(`${card.dataset.name} ditambahkan ke keranjang`);
-      });
-      byId("cartBtn").addEventListener("click", openCart);
-      byId("closeCart").addEventListener("click", closeCart);
-      byId("veil").addEventListener("click", closeCart);
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && document.body.classList.contains("cart-open")) closeCart();
-      });
-      byId("checkoutBtn").addEventListener("click", () => {
-        const error = byId("cartError");
-        const customerName = byId("customerName").value.trim();
-        if (!customerName) {
-          error.textContent = "Isi namamu dulu sebelum mengirim pesanan.";
-          byId("customerName").focus();
-          return;
-        }
-        error.textContent = "";
-        const message = ["Halo Cosmic Chaos Club, saya mau pesan reading:", "", `Nama: ${customerName}`, "", "Pesanan:"];
-        let total = 0;
-        for (const item of cart.values()) {
-          const lineTotal = item.price * item.quantity;
-          total += lineTotal;
-          message.push(`- ${item.name} × ${item.quantity}: ${money(lineTotal)}`);
-        }
-        message.push("", `Total: ${money(total)}`, `DP 50% setelah konfirmasi: ${money(Math.ceil(total / 2))}`);
-        const question = byId("customerQuestion").value.trim();
-        if (question) message.push("", "Pertanyaan / konteks:", question);
-        window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message.join("\n"))}`;
-      });
-      renderCart();
-    })();
+    (()=>{"use strict";const whatsappNumber="6281229975955",cart=new Map(),$=id=>document.getElementById(id),money=n=>"Rp"+Number(n).toLocaleString("id-ID");let toastTimer;
+      function openCart(){document.body.classList.add("cart-open");$("drawer").setAttribute("aria-hidden","false");$("veil").setAttribute("aria-hidden","false");$("closeCart").focus()}
+      function closeCart(){document.body.classList.remove("cart-open");$("drawer").setAttribute("aria-hidden","true");$("veil").setAttribute("aria-hidden","true");$("cartBtn").focus()}
+      function showToast(text){const t=$("toast");t.textContent=text;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),1800)}
+      function renderCart(){const lines=$("cartLines");lines.replaceChildren();let total=0,count=0;if(!cart.size){const empty=document.createElement("p");empty.className="empty";empty.textContent="Keranjangmu masih kosong. Pilih reading untuk mulai order.";lines.append(empty)}for(const[id,item]of cart){total+=item.price*item.quantity;count+=item.quantity;const row=document.createElement("div");row.className="cart-line";const details=document.createElement("div"),name=document.createElement("strong"),price=document.createElement("small");name.textContent=item.name;price.textContent=`${money(item.price)} per item`;details.append(name,price);const controls=document.createElement("div");controls.className="controls";const makeButton=(text,label,handler,extra="")=>{const b=document.createElement("button");b.type="button";b.textContent=text;b.setAttribute("aria-label",label);if(extra)b.className=extra;b.addEventListener("click",handler);return b};const minus=makeButton("−",`Kurangi ${item.name}`,()=>changeQuantity(id,-1)),quantity=document.createElement("span");quantity.textContent=String(item.quantity);const plus=makeButton("+",`Tambah ${item.name}`,()=>changeQuantity(id,1)),remove=makeButton("Hapus",`Hapus ${item.name}`,()=>{cart.delete(id);renderCart()},"remove");controls.append(minus,quantity,plus,remove);row.append(details,controls);lines.append(row)}$("cartCount").textContent=String(count);$("cartTotal").textContent=money(total);$("checkoutBtn").disabled=cart.size===0}
+      function changeQuantity(id,delta){const item=cart.get(id);if(!item)return;item.quantity+=delta;if(item.quantity<=0)cart.delete(id);renderCart()}
+      $("productGrid").addEventListener("click",event=>{const button=event.target.closest('button[data-action="add"]');if(!button)return;event.preventDefault();const card=button.closest(".product");if(!card)return;const id=card.dataset.id,item=cart.get(id);if(item)item.quantity+=1;else cart.set(id,{id,name:card.dataset.name,price:Number(card.dataset.price),quantity:1});renderCart();openCart();showToast(`${card.dataset.name} ditambahkan ke keranjang`)});
+      $("cartBtn").addEventListener("click",openCart);$("closeCart").addEventListener("click",closeCart);$("veil").addEventListener("click",closeCart);document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.body.classList.contains("cart-open"))closeCart()});
+      $("checkoutBtn").addEventListener("click",()=>{const error=$("cartError"),customerName=$("customerName").value.trim();if(!customerName){error.textContent="Isi namamu dulu sebelum mengirim pesanan.";$("customerName").focus();return}error.textContent="";const message=["Halo Cosmic Chaos Club, saya mau pesan reading:","",`Nama: ${customerName}`,"","Pesanan:"];let total=0;for(const item of cart.values()){const lineTotal=item.price*item.quantity;total+=lineTotal;message.push(`- ${item.name} × ${item.quantity}: ${money(lineTotal)}`)}message.push("",`Total: ${money(total)}`,`DP 50% setelah konfirmasi: ${money(Math.ceil(total/2))}`);const question=$("customerQuestion").value.trim();if(question)message.push("","Pertanyaan / konteks:",question);window.location.href=`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message.join("\n"))}`});renderCart()})();
   </script>
 </body>
 </html>
