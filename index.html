@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarot by Cosmic Chaos Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1c1030;--panel:#27163f;--line:#4a3470;--ink:#f4ecfb;--mute:#b9a8d4;--pink:#f06bc9;--moon:#f7d977;--r:14px}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 "DM Sans",system-ui,sans-serif}
+h1,h2{font-family:Gloock,Georgia,serif;font-weight:400;line-height:1.1}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid var(--moon);outline-offset:2px}
+button{font:inherit;cursor:pointer}
+
+header.top{position:sticky;top:0;z-index:5;background:rgba(28,16,48,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
+.brand{font-family:Gloock,serif;font-size:1.1rem}
+#cartBtn{background:var(--pink);color:#2a0a22;border:0;border-radius:99px;padding:8px 16px;font-weight:700}
+
+.hero{padding:56px 0 36px;position:relative}
+.hero h1{font-size:clamp(2.6rem,9vw,4.6rem);max-width:11ch}
+.hero p{color:var(--mute);max-width:44ch;margin:18px 0 24px}
+.fan{position:absolute;right:8px;top:40px;width:130px;height:190px}
+.fan i{position:absolute;inset:0;border:2px solid var(--moon);border-radius:12px;background:var(--panel)}
+.fan i:nth-child(1){transform:rotate(-14deg)}
+.fan i:nth-child(2){transform:rotate(0)}
+.fan i:nth-child(3){transform:rotate(14deg);background:var(--pink);border-color:var(--pink)}
+.fan i:nth-child(2)::after{content:"☾";position:absolute;inset:0;display:grid;place-items:center;font-size:3rem;color:var(--moon)}
+@media(max-width:560px){.fan{display:none}}
+.cta{display:inline-block;background:var(--moon);color:#2b2205;border:0;border-radius:99px;padding:12px 24px;font-weight:700;text-decoration:none}
+
+.promo{border:1.5px dashed var(--moon);border-radius:var(--r);padding:16px 20px;margin:8px 0 8px}
+.promo b{color:var(--moon)}
+.promo ul{margin:6px 0 0 20px;color:var(--mute)}
+
+section.cat{padding-top:40px}
+section.cat h2{font-size:1.9rem;margin-bottom:4px}
+section.cat .sub{color:var(--mute);margin-bottom:8px}
+.item{display:grid;grid-template-columns:1fr auto;gap:6px 16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.item h3{font-size:1.05rem;font-weight:700}
+.item .desc{color:var(--mute);font-size:.93rem}
+.item .desc li{margin-left:18px}
+.price{font-weight:700;color:var(--moon);white-space:nowrap;text-align:right}
+.ctrl{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:99px;padding:4px 12px;font-size:.85rem}
+.chip[aria-pressed=true]{background:var(--pink);border-color:var(--pink);color:#2a0a22;font-weight:700}
+.add{background:transparent;border:1.5px solid var(--pink);color:var(--pink);border-radius:99px;padding:6px 16px;font-weight:700}
+.add:hover{background:var(--pink);color:#2a0a22}
+.add:disabled{opacity:.4;cursor:not-allowed;background:transparent;color:var(--pink)}
+.step{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:99px;padding:2px 6px}
+.step button{width:28px;height:28px;border-radius:50%;border:0;background:var(--line);color:var(--ink)}
+
+.how{padding:48px 0 80px}
+.how h2{font-size:1.9rem;margin-bottom:12px}
+.how ol{margin-left:20px;color:var(--mute)} .how li{margin-bottom:6px}
+.how p{margin-top:14px;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:24px 0;color:var(--mute);text-align:center;font-size:.9rem}
+footer a{color:var(--moon)}
+
+#veil{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
+#drawer{position:fixed;top:0;right:0;height:100%;width:min(440px,100%);background:var(--panel);z-index:10;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}
+body.open #veil{opacity:1;pointer-events:auto}
+body.open #drawer{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dh h2{font-size:1.4rem}
+.dh button{background:none;border:0;color:var(--ink);font-size:1.6rem}
+.db{flex:1;overflow:auto;padding:16px 20px}
+.line{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.line small{display:block;color:var(--mute)}
+.line button{background:none;border:0;color:var(--pink);font-size:.85rem;padding:0}
+.empty{color:var(--mute);padding:24px 0}
+.sum{margin:14px 0;padding:14px;border-radius:var(--r);background:var(--bg)}
+.sum div{display:flex;justify-content:space-between;padding:2px 0}
+.sum .dp{color:var(--moon);font-weight:700;font-size:1.1rem;border-top:1px solid var(--line);margin-top:6px;padding-top:8px}
+label{display:block;font-size:.88rem;color:var(--mute);margin:10px 0 4px}
+input,textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.check{display:flex;gap:10px;align-items:flex-start;color:var(--ink);font-size:.9rem;margin-top:12px}
+.check input{width:auto;margin-top:5px}
+.df{padding:14px 20px;border-top:1px solid var(--line);display:grid;gap:8px}
+.df .cta{text-align:center;width:100%}
+.df .ghost{background:none;border:1px solid var(--line);color:var(--ink);border-radius:99px;padding:10px}
+#err{color:#ff9aa8;font-size:.9rem;min-height:1.2em}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.pay{padding:8px 0 56px}
+.pay h2{font-size:1.9rem;margin-bottom:12px}
+.pay .box{display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:24px;align-items:start}
+.pay img{width:100%;border-radius:var(--r);display:block}
+.pay .acc{border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.pay .acc strong{display:block;font-size:1.4rem;letter-spacing:.04em;color:var(--moon);margin:4px 0 2px}
+.pay .acc p{color:var(--mute);font-size:.93rem;margin-bottom:10px}
+@media(max-width:560px){.pay .box{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <span class="brand">Cosmic Chaos Club</span>
+  <button id="cartBtn" aria-label="Buka keranjang">Keranjang (<span id="count">0</span>)</button>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="fan" aria-hidden="true"><i></i><i></i><i></i></div>
+    <h1>Tarot by Cosmic Chaos Club</h1>
+    <p>Reading tarot dan birth chart mulai dari Rp3.000. Pilih layananmu, kirim pertanyaan, dan kami baca untukmu.</p>
+    <a class="cta" href="#katalog">Lihat price list</a>
+  </div>
+
+  <div class="promo">
+    <b>Diskon 40% untuk pelanggan pertama.</b>
+    <ul>
+      <li>Post reading di Instagram Story</li>
+      <li>Tag @ccc.tarot</li>
+      <li>Kirim screenshot story</li>
+    </ul>
+  </div>
+
+  <div id="katalog"></div>
+
+  <div class="how">
+    <h2>Cara order</h2>
+    <ol>
+      <li>Pilih reading dan topik (kalau ada).</li>
+      <li>Isi pertanyaan atau detail yang dibutuhkan.</li>
+      <li>Kirim pesanan lewat WhatsApp, lalu bayar DP 50% via QRIS atau BCA (lihat bagian Pembayaran).</li>
+      <li>Reading dimulai setelah DP diterima.</li>
+      <li>Pelunasan setelah reading selesai.</li>
+    </ol>
+    <p>Untuk detailed reading, tulis pertanyaan yang jelas beserta konteksnya. Kamu tidak harus memilih semua reading sekaligus: mulai dari satu, tambah kapan saja. Reading tambahan masuk ke total pembayaran dengan DP 50%.</p>
+  </div>
+<div class="pay" id="bayar">
+    <h2>Pembayaran</h2>
+    <div class="box">
+      <img src="qris.svg" alt="QRIS Cosmic Chaos Club a.n. Auralia Madinna Rahardi">
+      <div class="acc">
+        <p>Scan QRIS dari aplikasi bank atau e-wallet apa saja, atau transfer ke:</p>
+        <p style="margin:0">BCA</p>
+        <strong id="acc">7738067662</strong>
+        <p>a.n. Auralia Madinna Rahardi</p>
+        <button class="add" id="copyAcc">Salin nomor rekening</button>
+        <p style="margin-top:12px">Bayar DP 50% setelah pesanan dikonfirmasi, lalu kirim bukti transfer lewat WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><div class="wrap">Instagram <a href="https://instagram.com/ccc.tarot" target="_blank" rel="noopener">@ccc.tarot</a></div></footer>
+
+<div id="veil"></div>
+<aside id="drawer" aria-label="Keranjang">
+  <div class="dh"><h2>Pesananmu</h2><button id="close" aria-label="Tutup">×</button></div>
+  <div class="db">
+    <div id="lines"></div>
+    <div id="checkout">
+      <div class="sum">
+        <div><span>Subtotal</span><span id="sSub"></span></div>
+        <div id="dRow" hidden><span>Diskon 40%</span><span id="sDisc"></span></div>
+        <div><span>Total</span><span id="sTot"></span></div>
+        <div class="dp"><span>DP 50% (bayar dulu)</span><span id="sDp"></span></div>
+        <div><span>Pelunasan setelah reading</span><span id="sRest"></span></div>
+      </div>
+      <label class="check"><input type="checkbox" id="first"> Saya pelanggan pertama dan akan mengirim screenshot Instagram Story</label>
+      <label for="name">Nama</label><input id="name" autocomplete="name">
+      <label for="contact">Kontak (WhatsApp atau Instagram)</label><input id="contact">
+      <label for="q">Pertanyaan atau konteks</label><textarea id="q" rows="4" placeholder="Tulis pertanyaanmu sejelas mungkin"></textarea>
+      <label>Data lahir (untuk birth chart)</label>
+      <div class="row"><input id="bd" type="date" aria-label="Tanggal lahir"><input id="bt" type="time" aria-label="Jam lahir"></div>
+      <label for="bp" style="margin-top:10px">Kota kelahiran</label><input id="bp">
+    </div>
+  </div>
+  <div class="df">
+    <div id="err" role="alert"></div>
+    <button class="cta" id="wa">Kirim pesanan via WhatsApp</button>
+    <button class="ghost" id="copy">Salin pesanan (untuk DM Instagram)</button>
+  </div>
+</aside>
+
+<script>
+/* ====== UBAH DI SINI ====== */
+const CONFIG = { wa: "6281229975955", ig: "ccc.tarot", bca: "7738067662" };
+/* ========================== */
+
+const TOPICS = ["Love","Health","Life Purpose","Past Life, General","Career","Money","Strengths","Weaknesses"];
+const birth = (name, topicPrice, allPrice) => [
+  {id:name+"-t", name:name+" — pilih topik", desc:"Rp10.000 per topik (topik pertama dan tambahan)", mode:"topic", price:topicPrice},
+  {id:name+"-all", name:name+" — semua topik", desc:"All Topics", mode:"fixed", price:allPrice}
+];
+const CATS = [
+ {title:"Tarot reading", sub:"Pertanyaan singkat", items:[
+  {id:"g1", name:"1 Card Reading", desc:"1 pertanyaan, 1 kartu", mode:"fixed", price:5000},
+  {id:"yn", name:"Yes / No Question", desc:"Jawaban ya atau tidak", mode:"fixed", price:3000}]},
+ {title:"Love reading", sub:"Tentang cinta dan pasangan", items:[
+  {id:"fs", name:"Future Spouse — General", desc:"3 kartu: gambaran umum future spouse, energi dan dinamika hubungan", mode:"fixed", price:17000},
+  {id:"fsw", name:"Future Spouse + Where Is My Love?", desc:"Detailed reading: timing dan encounter, apa yang perlu kamu lakukan untuk bertemu, relationship prognosis, dinamika dan perbedaan, personality, penampilan dan energi, hambatan, fondasi hubungan, tarot advice. Where Is My Love? sudah termasuk.", mode:"fixed", price:60000},
+  {id:"nl", name:"Next Lover", desc:"Personality, penampilan dan energi, bagaimana kalian bertemu, timing, koneksi dan potensi", mode:"fixed", price:25000}]},
+ {title:"Western astrology", sub:"Birth chart untuk insight dan memahami diri", items:birth("Western",10000,75000)},
+ {title:"Vedic astrology", sub:"Birth chart untuk insight prediktif", items:birth("Vedic",10000,75000)},
+ {title:"Bundle", sub:"Hemat", items:[
+  {id:"bun", name:"Western + Vedic — semua topik", desc:"Paket lengkap kedua birth chart", mode:"fixed", price:135000}]},
+ {title:"Interactive reading", sub:"Ngobrol langsung", items:[
+  {id:"iw", name:"Western birth chart via telepon", desc:"Semua topik. Rp30.000 per 10 menit.", mode:"qty", price:30000, unit:"× 10 menit"},
+  {id:"ig2", name:"General questions", desc:"Lewat chat, voice note, atau telepon. Rp30.000 per 15 menit.", mode:"qty", price:30000, unit:"× 15 menit"}]}
+];
+const ALL = Object.fromEntries(CATS.flatMap(c=>c.items).map(i=>[i.id,i]));
+const rp = n => "Rp" + Math.round(n).toLocaleString("id-ID");
+let cart = [];            // {id, qty, topics}
+const pick = {};          // pilihan topik sementara per item
+const qty = {};           // jumlah sementara untuk item mode qty
+
+const lineTotal = l => { const i=ALL[l.id]; return i.mode==="topic" ? i.price*l.topics.length : i.mode==="qty" ? i.price*l.qty : i.price; };
+const lineLabel = l => { const i=ALL[l.id]; return i.mode==="topic" ? `${i.name} (${l.topics.join(", ")})` : i.mode==="qty" ? `${i.name} (${l.qty} ${i.unit})` : i.name; };
+
+function renderCatalog(){
+  const root = document.getElementById("katalog");
+  root.innerHTML = "";
+  CATS.forEach(c=>{
+    const s = document.createElement("section"); s.className="cat";
+    s.innerHTML = `<h2>${c.title}</h2><p class="sub">${c.sub}</p>`;
+    c.items.forEach(i=>{
+      const d = document.createElement("div"); d.className="item";
+      const priceTxt = i.mode==="topic" ? "Rp10.000/topik" : rp(i.price);
+      d.innerHTML = `<div><h3>${i.name}</h3><p class="desc">${i.desc}</p></div><div class="price">${priceTxt}</div><div class="ctrl"></div>`;
+      const ctrl = d.querySelector(".ctrl");
+      if(i.mode==="topic"){
+        pick[i.id] = new Set();
+        const add = document.createElement("button"); add.className="add"; add.textContent="Tambah ke keranjang"; add.disabled=true;
+        TOPICS.forEach(t=>{
+          const b = document.createElement("button"); b.className="chip"; b.textContent=t; b.setAttribute("aria-pressed","false");
+          b.onclick = ()=>{ const on = !pick[i.id].has(t); on ? pick[i.id].add(t) : pick[i.id].delete(t); b.setAttribute("aria-pressed",on); add.disabled = !pick[i.id].size; };
+          ctrl.append(b);
+        });
+        add.onclick = ()=>{ addLine({id:i.id, qty:1, topics:[...pick[i.id]]}); pick[i.id].clear(); ctrl.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed","false")); add.disabled=true; };
+        ctrl.append(add);
+      } else if(i.mode==="qty"){
+        qty[i.id]=1;
+        const st = document.createElement("span"); st.className="step";
+        st.innerHTML = `<button aria-label="Kurangi">−</button><span>1</span><button aria-label="Tambah">+</button>`;
+        const [m,,p] = [...st.children], out = st.children[1];
+        m.onclick = ()=>{ qty[i.id]=Math.max(1,qty[i.id]-1); out.textContent=qty[i.id]; };
+        p.onclick = ()=>{ qty[i.id]=Math.min(12,qty[i.id]+1); out.textContent=qty[i.id]; };
+        const unit = document.createElement("span"); unit.textContent=i.unit; unit.className="desc";
+        const add = document.createElement("button"); add.className="add"; add.textContent="Tambah ke keranjang";
+        add.onclick = ()=>addLine({id:i.id, qty:qty[i.id], topics:[]});
+        ctrl.append(st, unit, add);
+      } else {
+        const add = document.createElement("button"); add.className="add"; add.textContent="Tambah ke keranjang";
+        add.onclick = ()=>addLine({id:i.id, qty:1, topics:[]});
+        ctrl.append(add);
+      }
+      s.append(d);
+    });
+    root.append(s);
+  });
+}
+
+function addLine(l){
+  const i = ALL[l.id];
+  const ex = cart.find(x=>x.id===l.id);
+  if(ex){
+    if(i.mode==="topic") ex.topics = [...new Set([...ex.topics, ...l.topics])];
+    else if(i.mode==="qty") ex.qty = Math.min(12, ex.qty + l.qty);
+  } else cart.push(l);
+  renderCart(); openCart();
+}
+
+function totals(){
+  const sub = cart.reduce((a,l)=>a+lineTotal(l),0);
+  const disc = document.getElementById("first").checked ? sub*0.4 : 0;
+  const tot = sub-disc, dp = Math.ceil(tot/2);
+  return {sub,disc,tot,dp,rest:tot-dp};
+}
+
+function renderCart(){
+  document.getElementById("count").textContent = cart.length;
+  const box = document.getElementById("lines");
+  box.innerHTML = "";
+  if(!cart.length){ box.innerHTML = '<p class="empty">Keranjang masih kosong. Pilih reading dulu ya.</p>'; }
+  cart.forEach((l,idx)=>{
+    const d = document.createElement("div"); d.className="line";
+    const left = document.createElement("div");
+    left.textContent = ALL[l.id].name;
+    if(l.topics.length || ALL[l.id].mode==="qty"){ const s=document.createElement("small"); s.textContent = l.topics.length ? l.topics.join(", ") : `${l.qty} ${ALL[l.id].unit}`; left.append(s); }
+    const rm = document.createElement("button"); rm.textContent="Hapus"; rm.onclick=()=>{ cart.splice(idx,1); renderCart(); };
+    left.append(rm);
+    const right = document.createElement("div"); right.className="price"; right.textContent = rp(lineTotal(l));
+    d.append(left,right); box.append(d);
+  });
+  document.getElementById("checkout").hidden = !cart.length;
+  const t = totals();
+  sSub.textContent=rp(t.sub); sDisc.textContent="−"+rp(t.disc); dRow.hidden=!t.disc;
+  sTot.textContent=rp(t.tot); sDp.textContent=rp(t.dp); sRest.textContent=rp(t.rest);
+}
+
+function buildMessage(){
+  const t = totals(), v = id=>document.getElementById(id).value.trim();
+  const L = ["*Pesanan Tarot by Cosmic Chaos Club*","",`Nama: ${v("name")}`,`Kontak: ${v("contact")}`,"","*Pesanan:*"];
+  cart.forEach(l=>L.push(`- ${lineLabel(l)}: ${rp(lineTotal(l))}`));
+  L.push("",`Subtotal: ${rp(t.sub)}`);
+  if(t.disc) L.push(`Diskon pelanggan pertama 40%: -${rp(t.disc)} (screenshot story menyusul)`);
+  L.push(`Total: ${rp(t.tot)}`,`DP 50%: ${rp(t.dp)}`,`Pelunasan setelah reading: ${rp(t.rest)}`);
+  if(v("q")) L.push("","*Pertanyaan / konteks:*",v("q"));
+  if(v("bd")||v("bt")||v("bp")) L.push("","*Data lahir:*",`Tanggal: ${v("bd")||"-"}`,`Jam: ${v("bt")||"-"}`,`Kota: ${v("bp")||"-"}`);
+  return L.join("\n");
+}
+
+function valid(){
+  const err = document.getElementById("err");
+  if(!cart.length) return err.textContent="Keranjang masih kosong.", false;
+  if(!name.value.trim()) return err.textContent="Isi namamu dulu.", false;
+  if(!contact.value.trim()) return err.textContent="Isi kontak WhatsApp atau Instagram.", false;
+  err.textContent=""; return true;
+}
+
+wa.onclick = ()=>{ if(valid()) window.open(`https://wa.me/${CONFIG.wa}?text=${encodeURIComponent(buildMessage())}`,"_blank"); };
+copyAcc.onclick = async ()=>{ try{ await navigator.clipboard.writeText(CONFIG.bca); copyAcc.textContent="Tersalin"; }catch{ copyAcc.textContent="Salin manual: "+CONFIG.bca; } };
+copy.onclick = async ()=>{
+  if(!valid()) return;
+  try{ await navigator.clipboard.writeText(buildMessage()); err.textContent="Pesanan tersalin. Tempel di DM @"+CONFIG.ig+"."; }
+  catch{ err.textContent="Gagal menyalin. Coba lewat WhatsApp."; }
+};
+first.onchange = renderCart;
+
+const openCart = ()=>document.body.classList.add("open");
+const closeCart = ()=>document.body.classList.remove("open");
+cartBtn.onclick = openCart; close.onclick = closeCart; veil.onclick = closeCart;
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeCart(); });
+
+renderCatalog(); renderCart();
+</script>
+</body>
+</html>
