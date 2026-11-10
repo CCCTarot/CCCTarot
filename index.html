@@ -103,6 +103,9 @@ input,textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid
 .paybox strong{color:var(--moon);font-size:1.2rem;letter-spacing:.04em}
 .steps{margin:10px 0 0 20px;color:var(--mute);font-size:.92rem}
 .steps li{margin-bottom:4px}
+
+.qr-placeholder{display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:22px 16px;min-height:180px;text-align:center;color:var(--ink)}
+.qr-placeholder .mini{display:inline-block;font-weight:700;color:var(--moon);margin-top:8px}
 </style>
 </head>
 <body>
@@ -148,7 +151,12 @@ input,textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid
 <div class="pay" id="bayar">
     <h2>Pembayaran</h2>
     <div class="box">
-      <img src="qris.svg" alt="QRIS Cosmic Chaos Club a.n. Auralia Madinna Rahardi">
+      <div class="qr-placeholder">
+        <div>
+          <div>QRIS telah dihapus dari repo.</div>
+          <div class="mini">Chat WhatsApp untuk kirim QRIS / konfirmasi pembayaran</div>
+        </div>
+      </div>
       <div class="acc">
         <p>Scan QRIS dari aplikasi bank atau e-wallet apa saja, atau transfer ke:</p>
         <p style="margin:0">BCA</p>
@@ -190,7 +198,12 @@ input,textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid
       <div class="paybox">
         <div style="color:var(--mute);font-size:.9rem">DP 50% yang harus dibayar</div>
         <strong id="payDp"></strong>
-        <img class="payimg" src="qris.svg" alt="QRIS a.n. Auralia Madinna Rahardi">
+        <div class="qr-placeholder" style="min-height:220px;margin:10px 0 0">
+          <div>
+            <div>QRIS akan dikirim via WhatsApp</div>
+            <div class="mini">Chat admin untuk menerima QRIS</div>
+          </div>
+        </div>
         <div style="color:var(--mute);font-size:.9rem">Atau transfer BCA a.n. Auralia Madinna Rahardi</div>
         <strong id="payAcc">7738067662</strong><br>
         <button class="add" id="copyAcc2" style="margin-top:8px">Salin nomor rekening</button>
